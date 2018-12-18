@@ -12,6 +12,7 @@ You are here because...
 - You need to configure your app for multiple environments, deployment sites, or whatever; and you don't want those details to clutter up your app's business logic.
 - You've tried dependency injection frameworks for these things, but it was too heavy-handed for simple config properties.
 - You have a large number of config properties, and you want to keep them organised.
+- You need non-Latin characters in config values, but `Properties` can't do UTF-8 encoding.
 
 ## Read Config Values
 
@@ -50,6 +51,8 @@ long-values = false
 user-id = myapp
 time.precision = MICROSECOND
 ```
+
+Config file encoding is always UTF-8.
 
 ## Configuring Fig
 
