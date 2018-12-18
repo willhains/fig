@@ -51,6 +51,19 @@ user-id = myapp
 time.precision = MICROSECOND
 ```
 
+## Configuring Fig
+
+By default, Fig will search for config files in a `fig` subdirectory of the current working directory. If it doesn't find a `fig` subdirectory there, it will search parent directories until it finds one.
+
+This, and all of Fig's defaults can be customised by placing an `env.fig` file in the current working directory or one of its parent directories.
+
+| Key             | Default | Purpose |
+|-----------------|---------|---------|
+| `env.id`        | `dev`   | The name of the environment, e.g. `qa`, `uat`, `prod`. |
+| `env.fig-dir`   | `fig`   | The relative or absolute path to the config files directory, e.g. `conf`, `cfg`, `.`, `~/config`. |
+| `env.fig-ext`   | `fig`   | The filename extension of config files, e.g. `cfg`, `conf`, `properties`, `txt`. |
+| `env.structure` | `id`    | Defines the overriding hierarchy structure of the config directory (see below), e.g. `id/site`, `id/site/dc`. |
+
 ## Development Status
 
 Fig is currently is in an early development stage, but is based on a design that is already used in mission-critical systems of a large financial institution. (No guarantees of safety or quality are made or implied. Use at your own risk.) Comments and contributions are welcome and encouraged. Public APIs are unlikely to change, but may do so without notice.
