@@ -6,7 +6,12 @@ Effortless config for your Java app.
 
 ## Motivation
 
-(TODO)
+You are here because...
+
+- You want to control your Java app via config files, but dealing with the `Properties` API is a pain.
+- You need to configure your app for multiple environments, deployment sites, or whatever; and you don't want those details to clutter up your app's business logic.
+- You've tried dependency injection frameworks for these things, but it was too heavy-handed for simple config properties.
+- You have a large number of config properties, and you want to keep them organised.
 
 ## Development Status
 
