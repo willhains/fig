@@ -64,6 +64,21 @@ This, and all of Fig's defaults can be customised by placing an `env.fig` file i
 | `env.fig-ext`   | `fig`   | The filename extension of config files, e.g. `cfg`, `conf`, `properties`, `txt`. |
 | `env.structure` | `id`    | Defines the overriding hierarchy structure of the config directory (see below), e.g. `id/site`, `id/site/dc`. |
 
+## Overriding Config Values
+
+Your app's config values may need to differ from one environment to another. For example, a database connection URL. The default `env.structure` provides a two-level overriding structure, so you can do this:
+
+```
+./                    # current working directory
+./fig/db.fig          # default DB settings, e.g. connect to Dev DB
+./fig/uat/db.fig      # UAT database settings
+./fig/prod/db.fig     # Prod database settings
+```
+
+Property values in `./fig/prod/db.fig` will override properties of the same key in `./fig/db.fig`. When a key in `./fig/db.fig` is not found in `./fig/prod/db.fig`, then the value from `./fig/db.fig` will be used.
+
+Config values can also be overridden by system properties (`-D` on the command line), and this will always take the highest precedence.
+
 ## Development Status
 
 Fig is currently is in an early development stage, but is based on a design that is already used in mission-critical systems of a large financial institution. (No guarantees of safety or quality are made or implied. Use at your own risk.) Comments and contributions are welcome and encouraged. Public APIs are unlikely to change, but may do so without notice.
