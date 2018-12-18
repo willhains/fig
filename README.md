@@ -36,6 +36,21 @@ private static final TimeUnit DB_TIMES =
 	Fig.obj("db.time.precision", TimeUnit::valueOf, TimeUnit.MILLISECOND);
 ```
 
+## Config Files
+
+The first part of a config property key is the filename of the config file (without the default file extension `.fig`). So, in the examples above, all the keys that start with `db.` come from a file named `db.fig`.
+
+Inside the `db.fig` file, the `db.` prefix can be dropped. For example, `db.url` can be written as just `url=`.
+
+```properties
+# DB config file ./fig/db.fig
+url = jdbc:oracle:thin:@localhost/mydb1
+port = 1521
+long-values = false
+user-id = myapp
+time.precision = MICROSECOND
+```
+
 ## Development Status
 
 Fig is currently is in an early development stage, but is based on a design that is already used in mission-critical systems of a large financial institution. (No guarantees of safety or quality are made or implied. Use at your own risk.) Comments and contributions are welcome and encouraged. Public APIs are unlikely to change, but may do so without notice.
