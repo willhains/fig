@@ -39,9 +39,9 @@ private static final TimeUnit DB_TIMES =
 
 ## Config Files
 
-The first part of a config property key is the filename of the config file (without the default file extension `.fig`). So, in the examples above, all the keys that start with `db.` come from a file named `db.fig`.
+The first part of a config property key is the filename of the config file (without the default file extension `.fig`). So, in the examples above, all the keys that start with `db.` come from a file named `db.fig`, located by default in a subdirectory `fig` under the working directory.
 
-Inside the `db.fig` file, the `db.` prefix can be dropped. For example, `db.url` can be written as just `url=`.
+Inside the `fig/db.fig` file, the `db.` prefix can be dropped. For example, `db.url` can be written as just `url=`.
 
 ```properties
 # DB config file ./fig/db.fig
