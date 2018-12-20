@@ -18,7 +18,7 @@ public final class Fig
 	 */
 	public static String str(final String key)
 	{
-		throw new UnsupportedOperationException("Not yet implemented.");
+		return opt(key).orElseThrow(() -> new MandatoryKeyNotFoundException(key));
 	}
 	
 	/**
@@ -29,7 +29,7 @@ public final class Fig
 	 */
 	public static String str(final String key, final String defaultValue)
 	{
-		throw new UnsupportedOperationException("Not yet implemented.");
+		return opt(key).orElse(defaultValue);
 	}
 	
 	/**
@@ -40,7 +40,7 @@ public final class Fig
 	 */
 	public static int num(final String key)
 	{
-		throw new UnsupportedOperationException("Not yet implemented.");
+		return Integer.parseInt(str(key));
 	}
 	
 	/**
@@ -50,6 +50,14 @@ public final class Fig
 	 * @throws NumberFormatException if the value found in config files cannot be converted to an integer.
 	 */
 	public static int num(final String key, final int defaultValue)
+	{
+		return opt(key).map(Integer::parseInt).orElse(defaultValue);
+	}
+	
+	// true = "true", "yes"
+	// false = "false", "no"
+	// case-insensitive
+	private static boolean _parseBoolean(final String fromString)
 	{
 		throw new UnsupportedOperationException("Not yet implemented.");
 	}
@@ -62,7 +70,7 @@ public final class Fig
 	 */
 	public static boolean bool(final String key)
 	{
-		throw new UnsupportedOperationException("Not yet implemented.");
+		return _parseBoolean(str(key));
 	}
 	
 	/**
@@ -74,7 +82,7 @@ public final class Fig
 	 */
 	public static boolean bool(final String key, final boolean defaultValue)
 	{
-		throw new UnsupportedOperationException("Not yet implemented.");
+		return opt(key).map(Fig::_parseBoolean).orElse(defaultValue);
 	}
 	
 	/**
@@ -86,7 +94,7 @@ public final class Fig
 	 */
 	public static <Target> Target obj(final String key, final Function<String, Target> factory)
 	{
-		throw new UnsupportedOperationException("Not yet implemented.");
+		return factory.apply(str(key));
 	}
 	
 	/**
@@ -102,7 +110,7 @@ public final class Fig
 		final Target defaultValue,
 	    final Function<String, Target> factory)
 	{
-		throw new UnsupportedOperationException("Not yet implemented.");
+		return opt(key).map(factory).orElse(defaultValue);
 	}
 	
 	/**
@@ -123,7 +131,7 @@ public final class Fig
 	 */
 	public static <Target> Optional<Target> opt(final String key, final Function<String, Target> factory)
 	{
-		throw new UnsupportedOperationException("Not yet implemented.");
+		return opt(key).map(factory);
 	}
 	
 	/**
