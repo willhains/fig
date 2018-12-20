@@ -1,5 +1,6 @@
 package com.willhains.fig;
 
+import java.util.Map;
 import java.util.function.Function;
 
 /**
@@ -99,6 +100,29 @@ public final class Fig
 		final String key,
 		final Target defaultValue,
 	    final Function<String, Target> factory)
+	{
+		throw new UnsupportedOperationException("Not yet implemented.");
+	}
+	
+	/**
+	 * @param wildcardKey a pattern to match config keys, containing exactly one wildcard character ({@code *}).
+	 * @return a {@link Map} containing all matching config values, indexed by the substrings the wildcard character
+	 *         matched.
+	 */
+	public static Map<String, String> map(final String wildcardKey)
+	{
+		throw new UnsupportedOperationException("Not yet implemented.");
+	}
+	
+	/**
+	 * @param wildcardKey a pattern to match config keys, containing exactly one wildcard character ({@code *}).
+	 * @param factory a method reference to either a constructor or a factory, that takes a single {@link String}
+	 *                argument, and returns an object of the specified type.
+	 * @param <Target> any object type that can be constructed from a {@link String} value.
+	 * @return a {@link Map} containing all matching config values, indexed by the substrings the wildcard character
+	 *         matched.
+	 */
+	public static <Target> Map<String, Target> map(final String wildcardKey, final Function<String, Target> factory)
 	{
 		throw new UnsupportedOperationException("Not yet implemented.");
 	}

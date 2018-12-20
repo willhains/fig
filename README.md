@@ -37,6 +37,14 @@ private static final TimeUnit DB_TIMES =
 	Fig.obj("db.time.precision", TimeUnit::valueOf, TimeUnit.MILLISECOND);
 ```
 
+You can also read multiple config values as an immutable `Map`, using a *wildcard key*. The wildcard key must have exactly one wildcard character (`*`), the matches of which will be the keys of the returned `Map`. If there are no matches, Fig returns an empty `Map`.
+
+```java
+private static final Map<String, String> NODE_NAMES = Fig.map("node.*.name");
+private static final Map<String, HostName> NODE_HOSTS =
+	Fig.map("node.*.hostname", HostName::new);
+```
+
 ## Config Files
 
 The first part of a config property key is the filename of the config file (without the default file extension `.fig`). So, in the examples above, all the keys that start with `db.` come from a file named `db.fig`, located by default in a subdirectory `fig` under the working directory.
