@@ -41,7 +41,7 @@ private static final TimeUnit DB_TIMES =
 
 The first part of a config property key is the filename of the config file (without the default file extension `.fig`). So, in the examples above, all the keys that start with `db.` come from a file named `db.fig`, located by default in a subdirectory `fig` under the working directory.
 
-Inside the `fig/db.fig` file, the `db.` prefix can (optionally) be dropped. For example, `db.url` can be written as just `url=`.
+Inside the `fig/db.fig` file, the `db.` prefix can (optionally) be dropped. For example, `db.url` can be written as just `url=`. One key with just the name of the file is allowed, for example, `db.fig` may contain `db=`.
 
 ```properties
 # DB config file ./fig/db.fig
@@ -62,14 +62,14 @@ This, and all of Fig's defaults can be customised by placing an `env.fig` file i
 
 | Key             | Default | Purpose |
 |-----------------|---------|---------|
-| `env.id`        | `dev`   | The name of the environment (see below), e.g. `qa`, `uat`, `prod`. |
+| `env`           | `dev`   | The name of the environment (see below), e.g. `qa`, `uat`, `prod`. |
 | `env.fig-dir`   | `fig`   | The relative or absolute path to the config files directory, e.g. `conf`, `cfg`, `.`, `~/config`. |
 | `env.fig-ext`   | `fig`   | The filename extension of config files, e.g. `cfg`, `conf`, `properties`, `txt`. |
-| `env.structure` | `id`    | Defines the overriding hierarchy structure of the config directory (see below), e.g. `id/site`, `id/site/dc`. |
+| `env.structure` | `env`   | Defines the overriding hierarchy structure of the config directory (see below), e.g. `env/site`, `site/env`. |
 
 ## Overriding Config Values
 
-Your app's config values may need to differ from one environment to another. For example, a database connection URL, a thread pool size, or a debug mode setting. The default `env.structure` provides a two-level overriding structure, so you can do this:
+Your app's config values may need to differ from one environment to another. For example, a database connection URL, a thread pool size, or a debug mode setting. The default `env.structure` provides a one level of overriding, based on the value of `env` in `env.fig`, so you can do this:
 
 ```
 ./                          # current working directory
