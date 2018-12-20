@@ -11,6 +11,27 @@ import java.util.function.Function;
  */
 public final class Fig
 {
+	private static final Fig _FIG = new Fig(RealFigDirectory::new, RealFigFile::new);
+	
+	private final Map<String, String> _config;
+	
+	Fig(
+		final Function<String, FigDirectory> directoryFactory,
+		final Function<String, FigFile> fileFactory)
+	{
+		throw new UnsupportedOperationException("Not yet implemented.");
+	}
+	
+	Optional<String> _opt(final String key)
+	{
+		return Optional.ofNullable(_config.get(key));
+	}
+	
+	Map<String, String> _map(final String wildcardKey)
+	{
+		throw new UnsupportedOperationException("Not yet implemented.");
+	}
+	
 	/**
 	 * @param key the config key, including a prefix from the name of the config file that stores it.
 	 * @return the trimmed, raw string value for the specified key.
@@ -119,7 +140,7 @@ public final class Fig
 	 */
 	public static Optional<String> opt(final String key)
 	{
-		throw new UnsupportedOperationException("Not yet implemented.");
+		return _FIG._opt(key);
 	}
 	
 	/**
@@ -141,7 +162,7 @@ public final class Fig
 	 */
 	public static Map<String, String> map(final String wildcardKey)
 	{
-		throw new UnsupportedOperationException("Not yet implemented.");
+		return _FIG._map(wildcardKey);
 	}
 	
 	/**
@@ -156,4 +177,30 @@ public final class Fig
 	{
 		throw new UnsupportedOperationException("Not yet implemented.");
 	}
+
+	private static final class RealFigDirectory implements FigDirectory
+	{
+		RealFigDirectory(final String path)
+		{
+			throw new UnsupportedOperationException("Not yet implemented.");
+		}
+	}
+	
+	private static final class RealFigFile implements FigFile
+	{
+		RealFigFile(final String path)
+		{
+			throw new UnsupportedOperationException("Not yet implemented.");
+		}
+	}
+}
+
+interface FigDirectory
+{
+	
+}
+
+interface FigFile
+{
+	
 }
