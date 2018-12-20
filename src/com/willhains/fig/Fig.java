@@ -1,5 +1,6 @@
 package com.willhains.fig;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
@@ -175,7 +176,10 @@ public final class Fig
 	 */
 	public static <Target> Map<String, Target> map(final String wildcardKey, final Function<String, Target> factory)
 	{
-		throw new UnsupportedOperationException("Not yet implemented.");
+		final Map<String, String> stringMap = map(wildcardKey);
+		final Map<String, Target> targetMap = new HashMap<>(stringMap.size());
+		stringMap.forEach((key, value) -> targetMap.put(key, factory.apply(value)));
+		return targetMap;
 	}
 
 	private static final class RealFigDirectory implements FigDirectory
