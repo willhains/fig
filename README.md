@@ -22,7 +22,13 @@ Getting config property values couldn't be easier. Since your config files are r
 private static final String DB_URL = Fig.str("db.url");
 ```
 
-You can supply a default value, which is used when the config property key is not found. (If you don't, and the key is missing, startup will fail with a helpful error printed to the console.)
+If the specified config key is missing, startup will fail with a helpful error printed to the console. Or, if the config property is not mandatory in your app, you can read it as an `Optional`.
+
+```java
+private static final Optional<String> DB_ENCODING = Fig.opt("db.encoding");
+```
+
+Alternatively, you can supply a default value, which is used when the config property key is not found.
 
 ```java
 private static final int DB_PORT = Fig.num("db.port", 8324);

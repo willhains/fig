@@ -1,6 +1,7 @@
 package com.willhains.fig;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 
 /**
@@ -100,6 +101,27 @@ public final class Fig
 		final String key,
 		final Target defaultValue,
 	    final Function<String, Target> factory)
+	{
+		throw new UnsupportedOperationException("Not yet implemented.");
+	}
+	
+	/**
+	 * @param key the config key, including a prefix from the name of the config file that stores it.
+	 * @return an {@link Optional} containing the value found in config files, or {@link Optional#empty()} if not found.
+	 */
+	public static Optional<String> opt(final String key)
+	{
+		throw new UnsupportedOperationException("Not yet implemented.");
+	}
+	
+	/**
+	 * @param key the config key, including a prefix from the name of the config file that stores it.
+	 * @param factory a method reference to either a constructor or a factory, that takes a single {@link String}
+	 *                argument, and returns an object of the specified type.
+	 * @param <Target> any object type that can be constructed from a {@link String} value.
+	 * @return an {@link Optional} containing the value found in config files, or {@link Optional#empty()} if not found.
+	 */
+	public static <Target> Optional<Target> opt(final String key, final Function<String, Target> factory)
 	{
 		throw new UnsupportedOperationException("Not yet implemented.");
 	}
