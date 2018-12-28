@@ -12,13 +12,11 @@ import java.util.function.Function;
  */
 public final class Fig
 {
-	private static final Fig _FIG = new Fig(RealFigDirectory::new, RealFigFile::new);
+	private static final Fig _FIG = new Fig(new RealFigFileSource());
 	
 	private final Map<String, String> _config;
 	
-	Fig(
-		final Function<String, FigDirectory> directoryFactory,
-		final Function<String, FigFile> fileFactory)
+	Fig(final FigFileSource fileSource)
 	{
 		throw new UnsupportedOperationException("Not yet implemented.");
 	}
@@ -181,6 +179,12 @@ public final class Fig
 		stringMap.forEach((key, value) -> targetMap.put(key, factory.apply(value)));
 		return targetMap;
 	}
+	
+	private static final class RealFigFileSource implements FigFileSource
+	{
+		@Override public Optional<FigDirectory> dir(String atPath) { return Optional.of(new RealFigDirectory(atPath)); }
+		@Override public Optional<FigFile> file(String atPath) { return Optional.of(new RealFigFile(atPath)); }
+	}
 
 	private static final class RealFigDirectory implements FigDirectory
 	{
@@ -197,6 +201,12 @@ public final class Fig
 			throw new UnsupportedOperationException("Not yet implemented.");
 		}
 	}
+}
+
+interface FigFileSource
+{
+	Optional<FigDirectory> dir(final String atPath);
+	Optional<FigFile> file(final String atPath);
 }
 
 interface FigDirectory
