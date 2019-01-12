@@ -70,10 +70,12 @@ Config file encoding is always UTF-8.
 
 ## Testing Classes that Use Fig
 
+Since config is an input to your code, you'll want to control it easily from unit tests. Use `MockFig` to clear and set config values for your tests. The changes you make affect only the current thread, so multi-threaded parallel testing is supported.
+
 ```java
 @Before public void initFig()
 {
-	MockFig.init();
+	MockFig.init(); // Clears all config values
 	MockFig.set("flamingo.max-squawks", 1);
 }
 ```
@@ -106,7 +108,7 @@ Your app's config values may need to differ from one environment to another. For
 
 In this example, property values in `./fig/prod/db.fig` will override properties of the same key in `./fig/db.fig`. When a key in `./fig/db.fig` is not found in `./fig/prod/db.fig`, then the value from `./fig/db.fig` will be used. And in the UAT environment, the default `./fig/processor.fig` settings will be used, while the production environment has its own specific settings in `./fig/prod/processor.fig`.
 
-If your app has a more complicated deployment topology --- for example, multiple locations, data centres, etc. --- you can add more levels (more subdirectories) with a custom `env.structure` setting.
+If your app has a more complicated deployment topology — for example, multiple locations, data centres, etc. — you can add more levels (more subdirectories) with a custom `env.structure` setting.
 
 Config values can also be overridden by system properties (`-D` on the command line), and this will always take the highest precedence.
 
