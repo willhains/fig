@@ -68,6 +68,16 @@ time.precision = MICROSECOND
 
 Config file encoding is always UTF-8.
 
+## Testing Classes that Use Fig
+
+```java
+@Before public void initFig()
+{
+	MockFig.init();
+	MockFig.set("flamingo.max-squawks", 1);
+}
+```
+
 ## Configuring Fig
 
 By default, Fig will search for config files in a `fig` subdirectory of the current working directory. If it doesn't find a `fig` subdirectory there, it will search parent directories until it finds one.
