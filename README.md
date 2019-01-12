@@ -51,6 +51,8 @@ private static final Map<String, HostName> NODE_HOSTS =
 	Fig.map("node.*.hostname", HostName::new);
 ```
 
+See [the `Using Fig` docs](docs/Using-Fig.md) for more information.
+
 ## Config Files
 
 The first part of a config property key is the filename of the config file (without the default file extension `.fig`). So, in the examples above, all the keys that start with `db.` come from a file named `db.fig`, located by default in a subdirectory `fig` under the working directory.
@@ -68,6 +70,8 @@ time.precision = MICROSECOND
 
 Config file encoding is always UTF-8.
 
+See [the `Fig Files` docs](docs/Fig-Files.md) for more information.
+
 ## Testing Classes that Use Fig
 
 Since config is an input to your code, you'll want to control it easily from unit tests. Use `MockFig` to clear and set config values for your tests. The changes you make affect only the current thread, so multi-threaded parallel testing is supported.
@@ -79,6 +83,8 @@ Since config is an input to your code, you'll want to control it easily from uni
 	MockFig.set("flamingo.max-squawks", 1);
 }
 ```
+
+See [the `Testing with Fig` docs](docs/Testing-with-Fig.md) for more information.
 
 ## Configuring Fig
 
@@ -92,6 +98,8 @@ This, and all of Fig's defaults can be customised by placing an `env.fig` file i
 | `env.fig-dir`   | `fig`   | The relative or absolute path to the config files directory, e.g. `conf`, `cfg`, `.`, `~/config`. |
 | `env.fig-ext`   | `fig`   | The filename extension of config files, e.g. `cfg`, `conf`, `properties`, `txt`. |
 | `env.structure` | `env`   | Defines the overriding hierarchy structure of the config directory (see below), e.g. `env/site`, `site/env`. |
+
+See [the `Customising Fig` docs](docs/Customising-Fig.md) for more information.
 
 ## Overriding Config Values
 
@@ -111,6 +119,8 @@ In this example, property values in `./fig/prod/db.fig` will override properties
 If your app has a more complicated deployment topology — for example, multiple locations, data centres, etc. — you can add more levels (more subdirectories) with a custom `env.structure` setting.
 
 Config values can also be overridden by system properties (`-D` on the command line), and this will always take the highest precedence.
+
+See [the `Environment Structure` docs](docs/Environment-Structure.md) for more information.
 
 ## Development Status
 
