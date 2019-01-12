@@ -51,7 +51,7 @@ private static final Map<String, HostName> NODE_HOSTS =
 	Fig.map("node.*.hostname", HostName::new);
 ```
 
-See [the `Using Fig` docs](docs/Using-Fig.md) for more information.
+See ["Using Fig"](docs/Using-Fig.md) for more information.
 
 ## Config Files
 
@@ -70,7 +70,7 @@ time.precision = MICROSECOND
 
 Config file encoding is always UTF-8.
 
-See [the `Fig Files` docs](docs/Fig-Files.md) for more information.
+See ["Fig Files"](docs/Fig-Files.md) for more information.
 
 ## Testing Classes that Use Fig
 
@@ -84,7 +84,7 @@ Since config is an input to your code, you'll want to control it easily from uni
 }
 ```
 
-See [the `Testing with Fig` docs](docs/Testing-with-Fig.md) for more information.
+See ["Testing with Fig"](docs/Testing-with-Fig.md) for more information.
 
 ## Configuring Fig
 
@@ -99,7 +99,7 @@ This, and all of Fig's defaults can be customised by placing an `env.fig` file i
 | `env.fig-ext`   | `fig`   | The filename extension of config files, e.g. `cfg`, `conf`, `properties`, `txt`. |
 | `env.structure` | `env`   | Defines the overriding hierarchy structure of the config directory (see below), e.g. `env/site`, `site/env`. |
 
-See [the `Customising Fig` docs](docs/Customising-Fig.md) for more information.
+See ["Customising Fig"](docs/Customising-Fig.md) for more information.
 
 ## Overriding Config Values
 
@@ -120,7 +120,7 @@ If your app has a more complicated deployment topology — for example, multiple
 
 Config values can also be overridden by system properties (`-D` on the command line), and this will always take the highest precedence.
 
-See [the `Environment Structure` docs](docs/Environment-Structure.md) for more information.
+See ["Environment Structure"](docs/Environment-Structure.md) for more information.
 
 ## Development Status
 
