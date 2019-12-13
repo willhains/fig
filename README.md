@@ -22,13 +22,7 @@ Getting config property values couldn't be easier. Since your config files are r
 private static final String DB_URL = Fig.str("db.url");
 ```
 
-If the specified config key is missing, startup will fail with a helpful error printed to the console. Or, if the config property is not mandatory in your app, you can read it as an `Optional`.
-
-```java
-private static final Optional<String> DB_ENCODING = Fig.opt("db.encoding");
-```
-
-Alternatively, you can supply a default value, which is used when the config property key is not found.
+If the specified config key is missing, startup will fail with a helpful error printed to the console. You can supply a default value, which is used when the config property key is not found.
 
 ```java
 private static final int DB_PORT = Fig.num("db.port", 8324);
@@ -41,6 +35,14 @@ Aside from reading raw `String`s, Fig automatically converts `int` and `boolean`
 private static final UserID DB_USER = Fig.obj("db.user-id", UserID::new);
 private static final TimeUnit DB_TIMES =
 	Fig.obj("db.time.precision", TimeUnit::valueOf, TimeUnit.MILLISECOND);
+```
+
+Fig can read a list of values, delimited by commas (default), or a custom delimiter.
+
+```java
+private static final Iterable<String> CLUSTER_HOSTS = Fig.list("db.cluster.hosts");
+private static final Iterable<HostName> CLUSTER_HOSTNAMES = Fig.list("db.cluster.hosts", HostName::new);
+private static final Iterable<UserID> BANNED_USERS = Fig.list("banned.user-ids", UserID::new, " ");
 ```
 
 You can also read multiple config values as an immutable `Map`, using a *wildcard key*. The wildcard key must have exactly one wildcard character (`*`), the matches of which will be the keys of the returned `Map`. If there are no matches, Fig returns an empty `Map`.
