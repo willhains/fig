@@ -1,31 +1,54 @@
 package com.willhains.fig;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 final class RealFigDirectory implements FigDirectory
 {
-	static final RealFigDirectory WORKING = new RealFigDirectory(".");
+	static final RealFigDirectory WORKING = new RealFigDirectory(new File("."));
 	
-	RealFigDirectory(final String path)
+	private File _dir;
+	
+	RealFigDirectory(final File dir)
 	{
-		throw new UnsupportedOperationException("Not yet implemented.");
+		_dir = dir;
+		if(!_dir.exists()) throw new IllegalArgumentException("'" + _dir + "' does not exist");
+		if(!_dir.isDirectory()) throw new IllegalArgumentException("'" + _dir + "' is not a directory");
 	}
 	
 	@Override
 	public Iterable<FigFile> filesWithExtension(final String ext)
 	{
-		throw new UnsupportedOperationException("Not yet implemented");
+		final List<FigFile> files = new ArrayList<>();
+		for(final File file: _dir.listFiles((dir, filename) -> filename.endsWith(ext)))
+		{
+			files.add(new RealFigFile(file));
+		}
+		return files;
 	}
 	
 	@Override
 	public Optional<FigFile> findFile(final String envFigPath)
 	{
-		throw new UnsupportedOperationException("Not yet implemented");
+		return _find(_dir, envFigPath, false).map(RealFigFile::new);
 	}
 	
 	@Override
 	public Optional<FigDirectory> findDir(final String dirPath)
 	{
-		throw new UnsupportedOperationException("Not yet implemented");
+		return _find(_dir, dirPath, true).map(RealFigDirectory::new);
+	}
+	
+	private Optional<File> _find(final File dir, final String name, final boolean directory)
+	{
+		for(final File file: dir.listFiles(($, filename) -> filename.equals(name)))
+		{
+			if(file.isDirectory() == directory) return Optional.of(file);
+		}
+		final String parentDir = dir.getParent();
+		if(parentDir == null) return Optional.empty();
+		return _find(new File(parentDir), name, directory);
 	}
 }
