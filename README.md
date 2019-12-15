@@ -71,9 +71,11 @@ static final Map<String, HostName> NODE_HOSTS = Fig.map("node.*.hostname", HostN
 
 ## Config Files
 
+Writing your config files is easy, too. Just make a directory called `fig`, and add `*.fig` files inside it. Fig uses the familiar `Properties` format: one config per line, with `key = value` syntax, and prefix comments with `#`. Config file encoding is always UTF-8, so you can use non-ASCII characters for both keys and values.
+
 The first part of a config key is the filename of the config file (without the default file extension `.fig`). So, in the examples above, all the keys that start with `db.` come from a file named `db.fig`, located by default in a subdirectory `fig` under the working directory.
 
-Inside the `fig/db.fig` file, the `db.` prefix can (optionally) be dropped. For example, `db.url=` can be written as just `url=`. One key with just the name of the file is allowed, for example, `db.fig` may contain `db=`.
+Inside the `fig/db.fig` file, the `db.` prefix can (optionally) be dropped. For example, `db.url=` can be written as just `url=`.
 
 ```properties
 # DB config file ./fig/db.fig
@@ -83,8 +85,6 @@ long-values = false
 user-id = myapp
 time.precision = MICROSECOND
 ```
-
-Config file encoding is always UTF-8.
 
 <!-- TODO: See ["Fig Files"](docs/Fig-Files.md) for more information. -->
 
