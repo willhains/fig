@@ -65,6 +65,8 @@ static final Map<String, String> NODE_NAMES = Fig.map("node.*.name");
 static final Map<String, HostName> NODE_HOSTS = Fig.map("node.*.hostname", HostName::new);
 ```
 
+> **NOTE:** Config is immutable. After class loading, all config values are fixed, including lists and maps.
+
 <!-- TODO: See ["Using Fig"](docs/Using-Fig.md) for more information. -->
 
 ## Config Files
