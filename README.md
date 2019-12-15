@@ -118,7 +118,9 @@ This, and all of Fig's defaults, can be customised by placing an `env.fig` file 
 
 ## Overriding Config
 
-Your app's config values may need to differ from one environment to another. For example, a database connection URL , a thread pool size, or a debug mode setting. Fig makes it easy. Just add a sub-directory inside your `fig ` directory, with the name of the environment, containing `*.fig` files of overriding keys. Then, in that environment , set `env` in `env.fig`, or the `FIG_ENV` environment variable, to the name of your sub-directory.
+Your app's config values may need to differ from one environment to another. For example, a database connection URL , a thread pool size, or a debug mode setting.
+
+Fig makes it easy. Just add a sub-directory inside your `fig` directory, with the name of the environment, containing `*.fig` files of overriding keys. Then, in each environment , set the `env` value in `env.fig` (or the `FIG_ENV` environment variable) to the environment name. Fig will load all the `fig/*.fig` files first, then override config values with those found in `fig/<env>/*.fig`.
 
 ```
 ./                          # current working directory
