@@ -106,7 +106,7 @@ See ["Testing with Fig"](docs/Testing-with-Fig.md) for more information. -->
 
 By default, Fig will search for config files in a `fig` subdirectory of the current working directory. If it doesn't find a `fig` subdirectory there, it will search parent directories until it finds one.
 
-This, and all of Fig's defaults, can be customised by placing an `env.fig` file in the current working directory or one of its parent directories. 
+This, and all of Fig's defaults, can be customised by placing an `env.fig` file in the current working directory or one of its parent directories. Alternatively, you can use environment variables or JVM `-D` args. (The latter takes precedence over `env.conf` settings.)
 
 | `env.fig`     | Env Var   | Default | Purpose |
 |---------------|-----------|---------|---------|
